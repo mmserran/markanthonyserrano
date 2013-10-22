@@ -1,0 +1,7 @@
+
+.projectbases/* 
+errors/ 
+sessions/  
+private/
+uploads/*
+.hg/

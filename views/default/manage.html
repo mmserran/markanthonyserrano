@@ -1,0 +1,13 @@
+{{extend 'layout.html'}}
+<h3>Manage</h3>
+
+{{=A('Upload', _class='btn', _href=URL('upload'))}}
+{{=A('New Post', _class='btn', _href=URL('post'))}}
+<br />
+<br />
+<h5>Live Posts:</h5>
+{{if grid:}}
+{{=grid}} 
+{{else:}}
+<p>No posts</p>
+{{pass}}
