@@ -1,13 +1,9 @@
 {{extend 'layout.html'}}
 <h3>Manage</h3>
 
-{{=A('Back', _class='btn', _href=URL('manage'))}}
-<br />
+{{=A('Back', _class='btn', _href=URL('manage', 'uploads'))}}
 <br />
 <br />
 
 <h3>Upload Source Code</h3>
 {{=form}}
-
-<h3>Current Uploads</h3>
-{{=grid}}

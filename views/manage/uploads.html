@@ -1,0 +1,12 @@
+{{extend 'layout.html'}}
+<h3>Manage</h3>
+{{=A('Back', _class='btn', _href=URL('manage', 'index'))}}
+{{=A('Upload', _class='btn', _href=URL('manage', 'upload'))}}
+<br /><br />
+
+<h3>Uploads List</h3>
+{{if grid:}}
+{{=grid}}
+{{else:}}
+<p>No uploads</p>
+{{pass}}

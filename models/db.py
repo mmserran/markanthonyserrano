@@ -38,7 +38,7 @@ import datetime
 
 db.define_table('project',
     Field('filename'),
-    Field('file', 'upload'),
+    Field('file', 'upload', unique=True),
     Field('thumbnail', 'upload'),
     format = '%(filename)s')
 
@@ -50,6 +50,8 @@ db.define_table('post',
     Field('counter', 'integer', default=0))
 
 db.project.filename.writable = False
+db.project.file.requires = IS_NOT_EMPTY()
+db.project.thumbnail.requires = IS_NOT_EMPTY()
 db.post.date.writable    = db.post.date.readable    = False
 db.post.counter.writable = db.post.counter.readable = False
 ## after defining tables, uncomment below to enable auditing
