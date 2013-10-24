@@ -1,11 +1,10 @@
 {{extend 'layout.html'}}
 <h5>File Download:</h5>
-<p>{{=A( _href=URL('download', args=record.file))}}</p>
+<p>{{=A( _href=URL('download', args=record.source.file))}}</p>
 <br>
 <h5>Description: </h5>
 <p>{{=record.description}}</p>
 <br>
 <h5>Share URL:</h5>
-<p>{{=A(_href=URL('view', args=[record.source.title]))}}</p>
 <br>
 <h5>Page Views: {{=record.counter}}</h5>

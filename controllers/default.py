@@ -8,10 +8,18 @@ def index():
     return dict()
 
 def portfolio():
-    return dict()
+    results = []
+    tagList_selected = ['Python', 'HTML']
+    
+    for tag in tagList_selected:
+        q = db.post.tag.contains(tag)
+        results += db(q).select()
+    
+    return dict(results=results)
 
 def view():
-    record = db(db.post.source.filename==request.args(0)).select().first()
+    q = db.post.title.replace(' ', '_')==request.args(0)
+    record = db(q).select().first()
     db.post[record.id] = dict(counter=(int(record.counter) + 1))
     
     return dict(record=record)

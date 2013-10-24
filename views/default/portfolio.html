@@ -1,1 +1,10 @@
 {{extend 'layout.html'}}
+
+
+{{for post in results:}}
+<div id="grid">
+	<div class="four columns center">
+		{{=A(IMG(_src=URL('default', 'download', args=[post.source.thumbnail])))}}<br>{{=post.title}}
+	</div>
+</div>
+{{pass}}

@@ -37,12 +37,13 @@ use_janrain(auth, filename='private/janrain.key')
 import datetime
 
 db.define_table('project',
-    Field('filename'),
-    Field('file', 'upload', unique=True),
-    Field('thumbnail', 'upload'),
+    Field('filename', unique=True),
+    Field('file', 'upload', unique=True, autodelete=True),
+    Field('thumbnail', 'upload', autodelete=True),
     format = '%(filename)s')
 
 db.define_table('post',
+    Field('title', unique=True),
     Field('source', 'reference project', unique=True),
     Field('description', 'text'),
     Field('tag', 'list:string'),
@@ -52,7 +53,10 @@ db.define_table('post',
 db.project.filename.writable = False
 db.project.file.requires = IS_NOT_EMPTY()
 db.project.thumbnail.requires = IS_NOT_EMPTY()
+
 db.post.date.writable    = db.post.date.readable    = False
 db.post.counter.writable = db.post.counter.readable = False
+db.post.description.requires = IS_NOT_EMPTY()
+db.post.tag.requires = IS_NOT_EMPTY()
 ## after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)
