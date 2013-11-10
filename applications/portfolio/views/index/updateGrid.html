@@ -1,0 +1,12 @@
+
+<body>
+	<!-- Grid -->
+		<div class="section group">
+		{{for post in results:}}
+			{{=DIV( BR(), BR(), P(post.title, _style="text-align:center;"), 
+					A(IMG(_src=URL('index', 'download', args=[post.source.thumbnail])), _href=URL('post', args=[post.title.replace(' ', '_')])), 
+					_class="grid col span_1_of_3")}}
+		{{pass}}
+		</div>
+</body>
+</html>

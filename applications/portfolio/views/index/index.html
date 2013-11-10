@@ -1,0 +1,30 @@
+{{extend 'layout.html'}}
+
+<div class="section group">
+	<h2>// Student Developer</h2>
+	<div class="front col span_1_of_3">
+		<div style="width:200px; height:400px;">
+			{{=IMG(_src=URL('static', 'images/briefcase.png'))}}
+			<h3>Take a look around</h3>
+			{{=P(T("This is my personal website. Everything is under construction, but please:"))}}
+			{{=A("visit my Portfolio page", _class="btn", _href=URL('index', 'viewer'))}}
+		</div>
+	</div>
+	<div class="front col span_1_of_3">
+		<div style="width:200px; height:400px;">
+			{{=IMG(_src=URL('static', 'images/profilePic.png'))}}
+			<h3>This is me</h3>
+			{{=P(T("I'm a student developer currently seeking employment. "), 
+				 T("I don't have much job experience, "),
+				 T("but I hope my code shows for itself."))}}
+		</div>
+	</div>
+
+	<div class="front col span_1_of_3">
+		<div style="width:200px; height:400px;">
+			{{=IMG(_src=URL('static', 'images/contactInfo.png'))}}
+			<h3>Scan for contact information</h3>
+			<br>
+		</div>
+	</div>
+</div>

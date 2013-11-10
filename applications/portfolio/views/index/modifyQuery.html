@@ -1,0 +1,7 @@
+{{for tag in order:}}
+	{{if tagList_selected[tag]:}}
+		{{=TD(A(tag, _onclick="modifyQuery('"+tag+"');"), _id=tag, _class="entry on")}}
+	{{else:}}
+		{{=TD(A(tag, _onclick="modifyQuery('"+tag+"');"), _id=tag, _class="entry")}}
+	{{pass}}
+{{pass}}

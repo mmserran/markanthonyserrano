@@ -1,0 +1,12 @@
+{{extend 'layout.html'}}
+<h2>{{=post.title}}</h2>
+<h5>File Download:</h5>
+<p>{{=A(post.source.filename, _class='btn', _href=URL('download', args=post.source.file))}}</p>
+<br>
+<h5>Description: </h5>
+<p>{{=post.description}}</p>
+<br>
+
+{{if count!=-1:}}
+<h5>Page Views: {{=count}}</h5>
+{{pass}}

@@ -1,0 +1,74 @@
+{{extend 'layout.html'}}
+<head>
+	<script>
+
+	$(document).ready(function(){
+		getQuery('All');
+	});
+	
+	function getQuery(value){
+		$.post("{{=URL('index', 'createQuery')}}",{category:value},function(result){
+			
+			$("#loader").show()
+		
+			$(".category").css("background-color", "white");
+			$("#refine").html(result);
+			$("#"+value).css("background-color", "#76B3E0");
+			$(".on").css("background-color", "#FFFFB9");
+            updateGrid();
+        });
+    }
+    
+    function modifyQuery(value){
+		$.post("{{=URL('index', 'modifyQuery')}}",{tagtoToggle:value},function(result){
+						
+			$("#loader").show()
+			
+			$("#refine").html(result);
+			$(".on").css("background-color", "#FFFFB9");
+            updateGrid();
+        });
+	}
+ 
+    function updateGrid(){
+		$.post("{{=URL('index', 'updateGrid')}}",function(result){
+					
+                $("#searchResults").html(result);
+        });
+    }
+	</script>
+
+	
+</head>
+<body>
+	<!-- Primary Page Layout
+	================================================== -->
+	<!-- Selector -->
+	<h1>// Portfolio</h1>
+	<br /><br />
+	<h3>Show:</h3>
+	<div class="selector">
+		<table>
+			<tr>
+			{{=TD(A("All", _onclick="getQuery('All');"), _class="category entry", _id="All")}}
+			{{=TD(A("Web", _onclick="getQuery('Web');"), _class="category entry", _id="Web")}}
+			{{=TD(A("Software", _onclick="getQuery('Software');"), _class="category entry", _id="Software")}}
+			{{=TD(A("Mobile", _onclick="getQuery('Mobile');"), _class="category entry", _id="Mobile")}}
+			{{=TD(A("Other", _onclick="getQuery('Other');"), _class="category entry", _id="Other")}}
+	        </tr>
+	        <tr id="refine">
+	        </tr>
+		</table>
+	</div>
+	<!-- Grid -->
+	<hr />
+	<div class="container">
+		<div id="searchResults" style="text-align:center"></div>
+	</div><!-- container -->
+
+
+
+<!-- End Document
+================================================== -->
+</body>
+</html>
