@@ -2,7 +2,7 @@
 
 #### MANAGEMENT INTERFACE BEGIN ####################################################################
 @is_owner
-def index():
+def home():
     return dict()
 
 @is_owner
@@ -17,9 +17,9 @@ def uploads():
             csv=False, create=False, details=False, editable=True, deletable=True,
             links=[
                 dict(header=T('Download file'),
-                     body = lambda r: A('Download', _class='btn', _href=URL('default', 'download', args=[r.file])) ),
+                     body = lambda r: A('Download', _class='btn', _href=URL('viewer', 'download', args=[r.file])) ),
                 dict(header=T('Thumbnail'),
-                     body = lambda r: A(IMG(_src=URL('default', 'download', args=[r.thumbnail]))) ),
+                     body = lambda r: A(IMG(_src=URL('viewer', 'download', args=[r.thumbnail]))) ),
                 dict(header=T('Delete file'),
                      body = lambda r: A('Delete', _class='btn', _href=URL('manage', 'delete', args=[r.id])) )
                 ]
@@ -73,9 +73,9 @@ def posts():
             csv=False, create=False, details=False, editable=True, deletable=True,
             links=[
                 dict(header=T('Public Link'),
-                    body = lambda r: A('Public Link', _class='btn', _href=URL('default', 'view', args=[r.title.replace(' ', '_')]))),
+                    body = lambda r: A('Public Link', _class='btn', _href=URL('viewer', 'view', args=[r.title.replace(' ', '_')]))),
                 dict(header=T('Download file'),
-                    body = lambda r: A('Download', _class='btn', _href=URL('default', 'download', args=[r.source.file])) ),
+                    body = lambda r: A('Download', _class='btn', _href=URL('viewer', 'download', args=[r.source.file])) ),
                 dict(header=T('Delete file'),
                      body = lambda r: A('Delete', _class='btn', _href=URL('manage', 'delete', args=[r.id])) )
                 ]

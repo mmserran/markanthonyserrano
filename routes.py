@@ -7,8 +7,8 @@
 # (possibly rewritten) incoming URL
 #
 default_application = 'portfolio'    # ordinarily set in base routes.py
-default_controller = 'index'  # ordinarily set in app-specific routes.py
-default_function = 'index'      # ordinarily set in app-specific routes.py
+default_controller = 'viewer'  # ordinarily set in app-specific routes.py
+default_function = 'home'      # ordinarily set in app-specific routes.py
 
 # routes_app is a tuple of tuples.  The first item in each is a regexp that will
 # be used to match the incoming request URL. The second item in the tuple is

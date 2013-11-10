@@ -114,7 +114,7 @@
         <div class="span12">
             <div class="page-header">
                 <h1>
-                    {{=A("Mark Anthony Serrano", _href=URL('default', 'index'))}}
+                    {{=A("Mark Anthony Serrano", _href=URL('viewer', 'home'))}}
                 </h1>
             </div>
         </div>
@@ -154,7 +154,7 @@
                 {{block footer}} <!-- this is default footer -->
                 <div class="copyright pull-left"><br>{{=T('Mark Anthony Serrano')}} &#169; {{=request.now.year}}</div>
                 <div id="poweredBy" class="pull-right">
-                    {{=A(T('Contact Me'), _href=URL('default', 'contactme'))}}
+                    {{=A(T('Contact Me'), _href=URL('viewer', 'contactme'))}}
 					{{=A(IMG(_src=URL('static', 'images/adobePDF.png'), _width='50px'), _href=URL('static', 'mmserranResume.pdf'))}}
 					{{=A(IMG(_src=URL('static', 'images/LinkedIn.png'), _width='50px'), _href="http://linkedin.com/pub/mark-anthony-serrano/4a/988/682/")}}
 					<br><br><br><br>

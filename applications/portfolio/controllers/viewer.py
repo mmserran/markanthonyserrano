@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
 #### FRONTEND UI BEGIN #############################################################################
-def index():
+def home():
     """
     homepage of markanthonyserrano.com
     """
     return dict()
 
-def viewer():
+def index():
     return dict()
 
 def contactme():

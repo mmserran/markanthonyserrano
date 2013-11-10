@@ -7,7 +7,7 @@
 	});
 	
 	function getQuery(value){
-		$.post("{{=URL('index', 'createQuery')}}",{category:value},function(result){
+		$.post("{{=URL('viewer', 'createQuery')}}",{category:value},function(result){
 			
 			$("#loader").show()
 		
@@ -20,7 +20,7 @@
     }
     
     function modifyQuery(value){
-		$.post("{{=URL('index', 'modifyQuery')}}",{tagtoToggle:value},function(result){
+		$.post("{{=URL('viewer', 'modifyQuery')}}",{tagtoToggle:value},function(result){
 						
 			$("#loader").show()
 			
@@ -31,7 +31,7 @@
 	}
  
     function updateGrid(){
-		$.post("{{=URL('index', 'updateGrid')}}",function(result){
+		$.post("{{=URL('viewer', 'updateGrid')}}",function(result){
 					
                 $("#searchResults").html(result);
         });
