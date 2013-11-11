@@ -9,6 +9,7 @@ encoding//applications/newsmap/controllers/default.py=utf-8
 encoding//applications/newsmap/models/news.py=utf8
 encoding//applications/portfolio/controllers/manage.py=utf-8
 encoding//applications/portfolio/controllers/viewer.py=utf-8
+encoding//applications/portfolio/models/db.py=utf-8
 encoding//examples/routes.parametric.example.py=utf-8
 encoding//examples/routes.patterns.example.py=utf-8
 encoding/routes.py=utf-8

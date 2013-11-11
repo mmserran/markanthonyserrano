@@ -147,12 +147,18 @@ def get_user_email():
         else:
             return auth.user.email.lower()
 
-ip = "76.225.37.120"
+ip = "169.233.38.137"
 # ip = "169.233.37.220" 
 def is_owner(callee):
-    if request.client!=ip:
-        redirect(URL('default', 'portfolio'))
-    return callee
+    from google.appengine.api import users as googleusers
+    u = googleusers.get_current_user()
+    
+    if u:
+        if u.email()!="Mark.Serrano2@yahoo.com":
+            redirect(URL('viewer', 'main'))
+        return callee
+    else:
+        redirect(googleusers.create_login_url(dest_url=URL('manage', 'home')))
         
 
 ######################

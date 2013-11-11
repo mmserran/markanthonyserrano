@@ -7,7 +7,7 @@ def home():
     """
     return dict()
 
-def index():
+def main():
     return dict()
 
 def contactme():
