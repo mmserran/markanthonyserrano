@@ -1,4 +1,4 @@
-timestamp: 2013-11-03T14:23:37.735995
+timestamp: 2013-11-10T23:16:55.283892
 CREATE TABLE auth_user(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name CHAR(128),
@@ -10,21 +10,21 @@ CREATE TABLE auth_user(
     registration_id CHAR(512)
 );
 success!
-timestamp: 2013-11-03T14:23:37.737944
+timestamp: 2013-11-10T23:16:55.287492
 CREATE TABLE auth_group(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     role CHAR(512),
     description TEXT
 );
 success!
-timestamp: 2013-11-03T14:23:37.739883
+timestamp: 2013-11-10T23:16:55.289681
 CREATE TABLE auth_membership(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
 );
 success!
-timestamp: 2013-11-03T14:23:37.741938
+timestamp: 2013-11-10T23:16:55.292198
 CREATE TABLE auth_permission(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
@@ -33,7 +33,7 @@ CREATE TABLE auth_permission(
     record_id INTEGER
 );
 success!
-timestamp: 2013-11-03T14:23:37.744830
+timestamp: 2013-11-10T23:16:55.295060
 CREATE TABLE auth_event(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     time_stamp TIMESTAMP,
@@ -43,7 +43,7 @@ CREATE TABLE auth_event(
     description TEXT
 );
 success!
-timestamp: 2013-11-03T14:23:37.747009
+timestamp: 2013-11-10T23:16:55.297012
 CREATE TABLE auth_cas(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
@@ -53,37 +53,24 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
-timestamp: 2013-11-03T14:23:58.251839
-CREATE TABLE auth_user(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    first_name CHAR(128),
-    last_name CHAR(128),
-    email CHAR(512),
-    password CHAR(512),
-    registration_key CHAR(512),
-    reset_password_key CHAR(512),
-    registration_id CHAR(512)
-);
-timestamp: 2013-11-03T14:24:19.937756
-ALTER TABLE auth_user ADD username CHAR(128);
-success!
-timestamp: 2013-11-03T14:24:19.947259
+timestamp: 2013-11-10T23:27:52.067688
 CREATE TABLE project(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     filename CHAR(512) UNIQUE,
-    file CHAR(512) UNIQUE,
+    ufile CHAR(512) UNIQUE,
     thumbnail CHAR(512)
 );
 success!
-timestamp: 2013-11-03T14:24:19.950235
+timestamp: 2013-11-10T23:28:56.903739
 CREATE TABLE post(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title CHAR(512) UNIQUE,
-    source INTEGER REFERENCES project (id) ON DELETE CASCADE,
+    usource INTEGER REFERENCES project (id) ON DELETE CASCADE,
     description TEXT,
     category CHAR(512),
     tag TEXT,
-    date TIMESTAMP,
+    other TEXT,
+    udate TIMESTAMP,
     counter INTEGER
 );
 success!

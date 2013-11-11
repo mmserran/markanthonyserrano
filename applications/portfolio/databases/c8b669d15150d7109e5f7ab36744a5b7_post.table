@@ -63,7 +63,7 @@ I512
 sg5
 I00
 sg6
-I8
+I9
 sg7
 S'INTEGER'
 p21
@@ -72,24 +72,24 @@ I00
 sg10
 S'integer'
 p22
-ssS'source'
+ssS'udate'
 p23
 (dp24
 g4
 I512
 sg5
-I01
+I00
 sg6
-I3
+I8
 sg7
-S'INTEGER REFERENCES project (id) ON DELETE CASCADE'
+S'TIMESTAMP'
 p25
 sg9
 I00
 sg10
-S'reference project'
+S'datetime'
 p26
-ssS'tag'
+ssS'other'
 p27
 (dp28
 g4
@@ -97,7 +97,7 @@ I512
 sg5
 I00
 sg6
-I6
+I7
 sg7
 S'TEXT'
 p29
@@ -106,7 +106,7 @@ I00
 sg10
 S'list:string'
 p30
-ssS'date'
+ssS'tag'
 p31
 (dp32
 g4
@@ -114,18 +114,34 @@ I512
 sg5
 I00
 sg6
-I7
+I6
 sg7
-S'TIMESTAMP'
+S'TEXT'
 p33
 sg9
 I00
 sg10
-S'datetime'
+g30
+ssS'usource'
 p34
+(dp35
+g4
+I512
+sg5
+I01
+sg6
+I3
+sg7
+S'INTEGER REFERENCES project (id) ON DELETE CASCADE'
+p36
+sg9
+I00
+sg10
+S'reference project'
+p37
 ssS'id'
-p35
-(dp36
+p38
+(dp39
 g4
 I512
 sg5
@@ -134,9 +150,9 @@ sg6
 I1
 sg7
 S'INTEGER PRIMARY KEY AUTOINCREMENT'
-p37
+p40
 sg9
 I00
 sg10
-g35
+g38
 ss.

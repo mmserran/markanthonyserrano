@@ -106,6 +106,7 @@ db.define_table('post',
     Field('description', 'text'),
     Field('category', 'string'),
     Field('tag', 'list:string'),
+    Field('other', 'list:string'),
     Field('date', 'datetime', default=datetime.datetime.utcnow()),
     Field('counter', 'integer', default=0))
 
@@ -147,8 +148,6 @@ def get_user_email():
         else:
             return auth.user.email.lower()
 
-ip = "169.233.38.137"
-# ip = "169.233.37.220" 
 def is_owner(callee):
     from google.appengine.api import users as googleusers
     u = googleusers.get_current_user()
@@ -159,6 +158,8 @@ def is_owner(callee):
         return callee
     else:
         redirect(googleusers.create_login_url(dest_url=URL('manage', 'home')))
+
+    return callee
         
 
 ######################

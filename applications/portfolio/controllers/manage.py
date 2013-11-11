@@ -21,21 +21,21 @@ def uploads():
                 dict(header=T('Thumbnail'),
                      body = lambda r: A(IMG(_src=URL('viewer', 'download', args=[r.thumbnail]))) ),
                 dict(header=T('Delete file'),
-                     body = lambda r: A('Delete', _class='btn', _href=URL('manage', 'delete', args=[r.id])) )
+                     body = lambda r: A('Delete', _class='btn', _href=URL('manage', 'delete', args=[r.id, '0'])) )
                 ]
             )
     return dict(grid=grid)
 
 @is_owner
 def delete():
-    try:
+    if request.args(1)=='0':
         upload = request.args(0)
         db(db.project.id==upload).delete()
-        redirect(URL('manage', 'home'))
-    except:
+        redirect(URL('manage', 'uploads'))
+    else:
         upload = request.args(0)
         db(db.post.id==upload).delete()
-        redirect(URL('manage', 'home'))
+        redirect(URL('manage', 'posts'))
         
     return dict()
 
@@ -69,7 +69,7 @@ def posts():
     else:
         grid = SQLFORM.grid(q,
             searchable=True,
-            fields=[db.post.source, db.post.title, db.post.description, db.post.category, db.post.tag],
+            fields=[db.post.source, db.post.title, db.post.description, db.post.category, db.post.tag, db.post.other],
             csv=False, create=False, details=False, editable=True, deletable=True,
             links=[
                 dict(header=T('Public Link'),
@@ -77,14 +77,14 @@ def posts():
                 dict(header=T('Download file'),
                     body = lambda r: A('Download', _class='btn', _href=URL('viewer', 'download', args=[r.source.file])) ),
                 dict(header=T('Delete file'),
-                     body = lambda r: A('Delete', _class='btn', _href=URL('manage', 'delete', args=[r.id])) )
+                     body = lambda r: A('Delete', _class='btn', _href=URL('manage', 'delete', args=[r.id, '1'])) )
                 ]
             )
     return dict(grid=grid)
 
 @is_owner
 def post():
-    fields = ['source', 'title', 'description', 'category', 'tag'];
+    fields = ['source', 'title', 'description', 'category', 'tag', 'other'];
     form = SQLFORM(db.post, fields=fields, submit_button = 'Post')
     if form.process().accepted:
         # Successful upload! Redirect the user to the manage page
