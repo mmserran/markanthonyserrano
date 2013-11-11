@@ -26,8 +26,8 @@ def contactme():
         session.flash = 'form has errors'
     return dict(form=form)
 
-def createQuery():    
-    
+def createQuery():  
+    session.reset = True
     ''' BEGIN GENERATE AVAILABLE TAGS '''''''''''''''
     tags_available = []
     
@@ -63,13 +63,19 @@ def createQuery():
                 order=list(sorted(session.tags_selected)))
 
 def modifyQuery():
-    
     tagtoToggle = request.vars.values()[0]
     
     ''' BEGIN TOGGLE STR tagtoToggle in DICT tags_selected '''''''''''''''
     # Modify tags_selected to user input
     session.tags_selected[tagtoToggle] = not session.tags_selected[tagtoToggle]
     ''' END TOGGLE STR tagtoToggle in DICT tags_selected '''''''''''''''
+    
+    if session.reset:
+        for tag in session.tags_selected.keys():
+            session.tags_selected[tag] = False
+        session.tags_selected[tagtoToggle] = True
+    
+    session.reset = False
     return dict(tagList_selected=session.tags_selected, 
                 order=sorted(session.tags_selected))
 

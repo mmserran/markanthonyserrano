@@ -31,11 +31,11 @@ def delete():
     try:
         upload = request.args(0)
         db(db.project.id==upload).delete()
-        redirect(URL('manage', 'index'))
+        redirect(URL('manage', 'home'))
     except:
         upload = request.args(0)
         db(db.post.id==upload).delete()
-        redirect(URL('manage', 'index'))
+        redirect(URL('manage', 'home'))
         
     return dict()
 
