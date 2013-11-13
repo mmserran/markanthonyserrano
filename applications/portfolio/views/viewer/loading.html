@@ -1,0 +1,11 @@
+<body>
+	<!-- Grid -->
+		<div class="section group">
+		{{for post in xrange(numPosts):}}
+			{{=DIV( BR(), BR(), BR( _style="text-align:center; width:200px"), 
+					DIV(IMG(_src=URL('static', 'images/ajax-loader.gif'))), 
+					_class="grid col span_1_of_3", _style="height:200px")}}
+		{{pass}}
+		</div>
+</body>
+</html>
