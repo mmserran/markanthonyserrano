@@ -111,18 +111,21 @@ def updateGrid():
     return dict(results=results)
 
 def post():
-    q = db.post.title.replace(' ', '_')==request.args(0)
+    
+    title = request.args(0).replace('_', ' ')
+    q = db.post.title==title
     record = db(q).select().first()
-    '''
-    if not is_owner():
+    
+    
+    if not owner():
         # only increment if a visitor visits
         count=-1
-        db.post[record.id] = dict(counter=(int(record.counter) + 1))
+        record.update_record(counter=(int(record.counter) + 1))
     else:
         # only the owner may see the page counter
         count=record.counter
-    '''
-    return dict(post=record)
+    
+    return dict(post=record, count=count)
 #### FRONTEND UI END ###############################################################################
 
 
