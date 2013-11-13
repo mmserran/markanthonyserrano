@@ -112,7 +112,8 @@ def updateGrid():
 
 def post():
     
-    q = db.post.title==request.args(0).replace('_', ' ')
+    title = request.args(0).replace('_', ' ')
+    q = db.post.title==title
     record = db(q).select().first()
     
     
@@ -124,7 +125,7 @@ def post():
         # only the owner may see the page counter
         count=record.counter
     
-    return dict(record=record, count=count)
+    return dict(post=record, count=count)
 #### FRONTEND UI END ###############################################################################
 
 
