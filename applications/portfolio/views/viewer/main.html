@@ -8,32 +8,36 @@
 	
 	function getQuery(value){
 		$.post("{{=URL('viewer', 'createQuery')}}",{category:value},function(result){
-			
-			$("#loader").show()
 		
 			$(".category").css("background-color", "white");
 			$("#refine").html(result);
 			$("#"+value).css("background-color", "#76B3E0");
 			$(".on").css("background-color", "#FFFFB9");
-            updateGrid();
+            loading();
         });
     }
     
     function modifyQuery(value){
-		$.post("{{=URL('viewer', 'modifyQuery')}}",{tagtoToggle:value},function(result){
-						
-			$("#loader").show()
+		$.post("{{=URL('viewer', 'modifyQuery')}}",{tagtoToggle:value},function(result){	
 			
 			$("#refine").html(result);
 			$(".on").css("background-color", "#FFFFB9");
-            updateGrid();
+            loading();
         });
 	}
+ 
+    function loading(){
+		$.post("{{=URL('viewer', 'loading')}}",function(result){
+					
+            $("#searchResults").html(result);
+            updateGrid();
+        });
+    }
  
     function updateGrid(){
 		$.post("{{=URL('viewer', 'updateGrid')}}",function(result){
 					
-                $("#searchResults").html(result);
+            $("#searchResults").html(result);
         });
     }
 	</script>

@@ -1,10 +1,9 @@
-
 <body>
 	<!-- Grid -->
 		<div class="section group">
 		{{for post in results:}}
-			{{=DIV( BR(), BR(), P(post.title, _style="text-align:center;"), 
-					A(IMG(_src=URL('viewer', 'download', args=[post.source.thumbnail])), _href=URL('post', args=[post.title.replace(' ', '_')])), 
+			{{=DIV( BR(), BR(), P(post.title, _style="text-align:center; width:200px"), 
+					DIV(A(IMG(_src=URL('viewer', 'download', args=[post.source.thumbnail])), _href=URL('viewer', 'post', args=[post.title.replace(' ', '_')])), _style="height:200px;"), 
 					_class="grid col span_1_of_3")}}
 		{{pass}}
 		</div>

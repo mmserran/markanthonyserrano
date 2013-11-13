@@ -11,7 +11,11 @@
 	</div>
 	<div class="front col span_1_of_3">
 		<div style="width:200px; height:400px;">
-			{{=IMG(_src=URL('static', 'images/profilePic.png'))}}
+			{{if owner():}}
+				{{=A(IMG(_src=URL('static', 'images/profilePic.png')), _href=URL('manage', 'home'), _id="secret")}}
+			{{else:}}
+				{{=IMG(_src=URL('static', 'images/profilePic.png'))}}
+			{{pass}}
 			<h3>This is me</h3>
 			{{=P(T("I'm a student developer currently seeking employment. "), 
 				 T("I don't have much job experience, "),

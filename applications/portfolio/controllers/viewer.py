@@ -33,6 +33,7 @@ def createQuery():
     
     # Selector Data
     category = request.vars.values()[0]
+    session.category = category
     
     if category == 'All':
         # Get all tags
@@ -79,20 +80,40 @@ def modifyQuery():
     return dict(tagList_selected=session.tags_selected, 
                 order=sorted(session.tags_selected))
 
-def updateGrid():
+def loading():
+    
     # Grid Data
     results = db(db.post.title==None).select()
     for tag, selected in session.tags_selected.items():
         if selected:
-            q = db.post.tag.contains(tag)
-            results = results | db(q).select()
+            q1 = db.post.tag.contains(tag)
+            if session.category!='All':
+                q2 = db.post.category==session.category
+                results = results | db(q1)(q2).select()
+            else:
+                results = results | db(q1).select()
+    
+    
+    return dict(numPosts=len(results))
+
+def updateGrid():
+        # Grid Data
+    results = db(db.post.title==None).select()
+    for tag, selected in session.tags_selected.items():
+        if selected:
+            q1 = db.post.tag.contains(tag)
+            if session.category!='All':
+                q2 = db.post.category==session.category
+                results = results | db(q1)(q2).select()
+            else:
+                results = results | db(q1).select()
     
     return dict(results=results)
 
 def post():
     q = db.post.title.replace(' ', '_')==request.args(0)
     record = db(q).select().first()
-    
+    '''
     if not is_owner():
         # only increment if a visitor visits
         count=-1
@@ -100,8 +121,8 @@ def post():
     else:
         # only the owner may see the page counter
         count=record.counter
-    
-    return dict(post=record, count=count)
+    '''
+    return dict(post=record)
 #### FRONTEND UI END ###############################################################################
 
 

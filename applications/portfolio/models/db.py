@@ -147,13 +147,19 @@ def get_user_email():
             return None
         else:
             return auth.user.email.lower()
-
+def owner():
+    if get_user_email()=="mark.serrano2@yahoo.com" or get_user_email()=="test@example.com":
+        return True
+    else:
+        return False
+    
 def is_owner(callee):
+    
     from google.appengine.api import users as googleusers
     u = googleusers.get_current_user()
     
     if u:
-        if u.email()!="Mark.Serrano2@yahoo.com":
+        if not owner():
             redirect(URL('viewer', 'main'))
         return callee
     else:
