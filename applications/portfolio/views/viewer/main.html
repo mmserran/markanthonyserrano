@@ -1,11 +1,31 @@
 {{extend 'layout.html'}}
 <head>
-	<script>
+	<link rel="stylesheet" type="text/css" href="{{=URL('static', 'js/shadowbox-3.0.3/shadowbox.css')}}">
+	<script type="text/javascript" src="{{=URL('static', 'js/shadowbox-3.0.3/shadowbox.js')}}"></script>
+	<script type="text/javascript">
+	Shadowbox.init({
+	    // let's skip the automatic setup because we don't have any
+	    // properly configured link elements on the page
+	    skipSetup: true
+	});
 
 	$(document).ready(function(){
 		getQuery('All');
 	});
 	
+	function openProject(link){
+    	$.post("{{=URL('viewer', 'post')}}",{category:link},function(result){
+			Shadowbox.open({
+		        content:    result,
+		        player:     "html",
+		        title:      link
+		    });
+		});
+    }
+    
+    function project(link){
+    }
+    
 	function getQuery(value){
 		$.post("{{=URL('viewer', 'createQuery')}}",{category:value},function(result){
 		

@@ -112,7 +112,8 @@ def updateGrid():
 
 def post():
     
-    title = request.args(0).replace('_', ' ')
+    title = request.vars.values()[0]
+    
     q = db.post.title==title
     record = db(q).select().first()
     
