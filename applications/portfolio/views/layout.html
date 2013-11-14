@@ -12,51 +12,30 @@
 	.thumbnail{
 		text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
 	}
-	
 	#projectModal {
 		margin-left: 25px;
 		margin-right: 25px;
-		margin-top: 23px;
+		margin-top: 10px;
 		margin-bottom: 25px;
+		overflow:hidden;
 	}
-	#projectModal .modalThumb {
-		float: left;
-		margin-right: 335px;
-		width: inherit;
-		border: 1px solid black;
+	#projectModal .container {
+	    text-align: left;
 	}
-	
-	#projectModal .data {
-		margin-right: 35px;
-		position: absolute;
-		left: 197px;
-		top: 10px;
+	#projectModal .container > span {
+	    width:150px;
+	    height:150px;
+	    display: inline-block;
 	}
-	
-	#projectModal .data #rightData {
-		position: absolute;
-		left: 120px;
-		top: 0px;
-	}
-	
-	#projectModal #desc {
-		margin-right: 35px;
-		position: absolute;
-		top: 180px;
-	}
-	
-	#projectModal #tags {
-		margin-left: 35px;
-		position: absolute;
-		left: 0px;
-	}
-	#projectModal #tags{ top: 440px; }
+	#projectModal .container img { border: 1px solid black; vertical-align:0px;}
+	#projectModal .container #col1 { vertical-align:15px; }
+	#projectModal .container #col2 { vertical-align:49px; }
 	#projectModal .tag {
 		background-color: #FFFFB9;
-		border-radius:5px;
+		border-radius:2 px;
 	}
-	
-	#projectModal li, td { display:inline; }
+	#projectModal li, td { display:inline-block; }
+		
 	
 	#secret {cursor:default;}
 	#secret:hover {opacity:1;}

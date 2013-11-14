@@ -2,28 +2,31 @@
 <body>
 <div id="projectModal">
 	
-	
 	<!-- Upper Thumbnail and Data Area -->
-	{{=DIV(IMG(_src=URL('viewer', 'download', args=[post.source.thumbnail])), _class="modalThumb")}}
+	<div class="container">
 	
-	<ul class="data">
-	  <li>
+	  {{=SPAN(IMG(_src=URL('viewer', 'download', args=[post.source.thumbnail])))}}
+	  
+	  <span style="width:20px"></span>
+	  <span id="col1">
 		<h5>Date: </h5>
 			<p>{{=post.date}}</p>
+		<br />
 		<h5>Download: </h5>
 			<p>{{=A('Available', _class='btn', _href=URL('download', args=post.source.file))}}</p>
-	  </li>
-		
-	  <li id="rightData">
+	  </span>
+	  <span id="col2">
 		<h5>Category: </h5>
 			<p>{{=post.category}}</p>
+		<br />
 		<h5>Repository:</h5>
 			<p></p>
-	  </li>
-	</ul>
-	
+	  </span>
+	  
+	</div>
+
 	<!-- Subheader and Description Area -->
-	<div id="desc">
+	<div>
 		<h5>Description: </h5>
 		<p>{{=post.description}}</p>
 		<br>
@@ -31,21 +34,22 @@
 	
 	
 	<!-- Footer Tag List Area -->
-	<table id="tags">
+	<div id="tags">
+	<h5>Tags: </h5>
+	<table>
 	  <tr>
 		{{for t in post.tag[:-1]:}}	
 			{{=TD(t, _class='tag')}}
 			<td></td>
 		{{pass}}
-	  </tr>
-	  <tr><td></td></tr>
-	  <tr>
+		
 		{{for o in post.other[:-1]:}}	
 			{{=TD(o, _class='tag')}}
 			<td></td>
 		{{pass}}
 	  </tr>
 	</table>
+	</div>
 
 </div>
 </body>
