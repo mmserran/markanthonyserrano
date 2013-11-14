@@ -13,13 +13,50 @@
 		text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
 	}
 	
-	.modalThumb {
-		margin-left:15px;
-		margin-top:15px;
-		margin-right: 360px;
-		width=inherit;
+	#projectModal {
+		margin-left: 25px;
+		margin-right: 25px;
+		margin-top: 23px;
+		margin-bottom: 25px;
+	}
+	#projectModal .modalThumb {
+		float: left;
+		margin-right: 335px;
+		width: inherit;
 		border: 1px solid black;
 	}
+	
+	#projectModal .data {
+		margin-right: 35px;
+		position: absolute;
+		left: 197px;
+		top: 10px;
+	}
+	
+	#projectModal .data #rightData {
+		position: absolute;
+		left: 120px;
+		top: 0px;
+	}
+	
+	#projectModal #desc {
+		margin-right: 35px;
+		position: absolute;
+		top: 180px;
+	}
+	
+	#projectModal #tags {
+		margin-left: 35px;
+		position: absolute;
+		left: 0px;
+	}
+	#projectModal #tags{ top: 440px; }
+	#projectModal .tag {
+		background-color: #FFFFB9;
+		border-radius:5px;
+	}
+	
+	#projectModal li, td { display:inline; }
 	
 	#secret {cursor:default;}
 	#secret:hover {opacity:1;}

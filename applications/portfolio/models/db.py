@@ -103,11 +103,13 @@ db.define_table('project',
 db.define_table('post',
     Field('title', unique=True),
     Field('source', 'reference project', unique=True),
-    Field('description', 'text'),
     Field('category', 'string'),
+    #Field('repo', 'string'),
+    #Field('subheader', 'string'),
+    Field('description', 'text'),
     Field('tag', 'list:string'),
     Field('other', 'list:string'),
-    Field('date', 'datetime', default=datetime.datetime.utcnow()),
+    Field('date', 'date', default=datetime.datetime.utcnow()),
     Field('counter', 'integer', default=0))
 
 db.project.filename.writable = False
