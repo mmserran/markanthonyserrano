@@ -13,23 +13,23 @@
 			<p>{{=post.date}}</p>
 		<br />
 		<h5>Source Code: </h5>
-			{{if post.source.file:}}
+			{{if post.repo:}}
+				<p>{{=A('Github', _class='btn', _href=post.repo)}}</p>
+			{{elif post.source.file:}}
 				<p>{{=A('Download', _class='btn', _href=URL('download', args=post.source.file))}}</p>
 			{{else:}}
-				<p>{{=A('Unavailable', _class='btn')}}</p>
+				<p class='no'>Unavailable</p>
 			{{pass}}
 	  </span>
 	  <span class="col">
 		<h5>Category: </h5>
 			<p>{{=post.category}}</p>
 		<br />
-		<h5>Repository:</h5>
-			{{if "github.com" in post.repo:}}
-				<p>{{=A('Github', _class='btn', _href=post.repo)}}</p>
-			{{elif post.repo:}}
-				<p>{{=A('Live Link', _class='btn', _href=post.repo)}}</p>
+		<h5>Live?</h5>
+			{{if post.live:}}
+				<p>{{=A('Live Link', _class='btn', _href=post.live)}}</p>
 			{{else:}}
-				<p>{{=A('Unavailable', _class='btn')}}</p>
+				<p class='no'>No</p>
 				
 			{{pass}}
 	  </span>

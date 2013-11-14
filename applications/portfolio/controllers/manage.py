@@ -82,7 +82,7 @@ def posts():
 
 @is_owner
 def post():
-    fields = ['source', 'title', 'repo', 'subheader', 'description', 'category', 'tag', 'other'];
+    fields = ['source', 'title', 'repo', 'live', 'subheader', 'description', 'category', 'tag', 'other'];
     form = SQLFORM(db.post, fields=fields, submit_button = 'Post')
     if form.process().accepted:
         # Successful upload! Redirect the user to the manage page

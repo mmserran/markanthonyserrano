@@ -34,7 +34,7 @@ def createQuery():
     category = request.vars.values()[0]
     session.category = category
     
-    if category == 'All':
+    if category=='All' or category=='Other':
         # Get all tags
         group = db(db.post).select()
     else:
@@ -43,7 +43,10 @@ def createQuery():
        
     # Convert to list of unique tags 
     for row in group:
-        tags_available += row.tag
+        if category=='Other':
+            tags_available += row.other
+        else:
+            tags_available += row.tag
     tags_available = list(set(tags_available))
     
     # Convert to dict with selected status at default on
@@ -80,13 +83,16 @@ def modifyQuery():
                 order=sorted(session.tags_selected))
 
 def loading():
-    
-    # Grid Data
+    # Count Grid Data... figure out how to bypass this to improve efficiency
     results = db(db.post.title==None).select()
     for tag, selected in session.tags_selected.items():
         if selected:
-            q1 = db.post.tag.contains(tag)
-            if session.category!='All':
+            if session.category=='Other':
+                q1 = db.post.other.contains(tag)
+            else:
+                q1 = db.post.tag.contains(tag)
+                
+            if session.category!='All' and session.category!='Other':
                 q2 = db.post.category==session.category
                 results = results | db(q1)(q2).select()
             else:
@@ -96,12 +102,16 @@ def loading():
     return dict(numPosts=len(results))
 
 def updateGrid():
-        # Grid Data
+    # Fetch Grid Data
     results = db(db.post.title==None).select()
     for tag, selected in session.tags_selected.items():
         if selected:
-            q1 = db.post.tag.contains(tag)
-            if session.category!='All':
+            if session.category=='Other':
+                q1 = db.post.other.contains(tag)
+            else:
+                q1 = db.post.tag.contains(tag)
+                
+            if session.category!='All' and session.category!='Other':
                 q2 = db.post.category==session.category
                 results = results | db(q1)(q2).select()
             else:
