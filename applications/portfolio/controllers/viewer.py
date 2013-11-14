@@ -17,11 +17,10 @@ def contactme():
         Field('message', 'text', default="Sorry, this form is not working just yet. Please instead compose your email in some other functional mail application"))
     if form.process().accepted:
         session.flash = 'mail sent!'
-        mail.send(to=['mmserran@me.com'],
-          subject=form.vars.subject,
-          # If reply_to is omitted, then mail.settings.sender is used
-          reply_to=form.vars.email,
-          message=form.vars.message)
+        mail.send_mail(sender=form.vars.email,
+              to="mmserran@me.com",
+              subject="form.vars.subject",
+              body=form.vars.message)
     elif form.errors:
         session.flash = 'form has errors'
     return dict(form=form)

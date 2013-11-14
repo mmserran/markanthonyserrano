@@ -1,5 +1,7 @@
 <html>
 <body>
+
+	{{=DIV(IMG(_src=URL('viewer', 'download', args=[post.source.thumbnail])), _class="modalThumb")}}
 <h5>File Download:</h5>
 <p>{{=A(post.source.filename, _class='btn', _href=URL('download', args=post.source.file))}}</p>
 <br>
