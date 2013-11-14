@@ -1,7 +1,6 @@
 <html>
-<header>
-</header>
 <body>
+<h2>{{=post.title}}</h2>
 <h5>File Download:</h5>
 <p>{{=A(post.source.filename, _class='btn', _href=URL('download', args=post.source.file))}}</p>
 <br>
