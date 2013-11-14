@@ -8,26 +8,37 @@
 	  {{=SPAN(IMG(_src=URL('viewer', 'download', args=[post.source.thumbnail])))}}
 	  
 	  <span style="width:20px"></span>
-	  <span id="col1">
+	  <span class="col">
 		<h5>Date: </h5>
 			<p>{{=post.date}}</p>
 		<br />
-		<h5>Download: </h5>
-			<p>{{=A('Available', _class='btn', _href=URL('download', args=post.source.file))}}</p>
+		<h5>Source Code: </h5>
+			{{if post.source.file:}}
+				<p>{{=A('Download', _class='btn', _href=URL('download', args=post.source.file))}}</p>
+			{{else:}}
+				<p>{{=A('Unavailable', _class='btn')}}</p>
+			{{pass}}
 	  </span>
-	  <span id="col2">
+	  <span class="col">
 		<h5>Category: </h5>
 			<p>{{=post.category}}</p>
 		<br />
 		<h5>Repository:</h5>
-			<p></p>
+			{{if "github.com" in post.repo:}}
+				<p>{{=A('Github', _class='btn', _href=post.repo)}}</p>
+			{{elif post.repo:}}
+				<p>{{=A('Live Link', _class='btn', _href=post.repo)}}</p>
+			{{else:}}
+				<p>{{=A('Unavailable', _class='btn')}}</p>
+				
+			{{pass}}
 	  </span>
 	  
 	</div>
 
 	<!-- Subheader and Description Area -->
 	<div>
-		<h5>Description: </h5>
+		<h5><em>{{=post.subheader}}</em></h5>
 		<p>{{=post.description}}</p>
 		<br>
 	</div>

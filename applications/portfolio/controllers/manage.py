@@ -47,7 +47,7 @@ def upload():
         
     if request.vars.file!=None:
         try:
-            form.vars.filename = request.vars.file.filename
+            form.vars.filename = request.vars.thumbnail.filename
         except:
             pass
     else:
@@ -69,11 +69,9 @@ def posts():
     else:
         grid = SQLFORM.grid(q,
             searchable=True,
-            fields=[db.post.source, db.post.title, db.post.description, db.post.category, db.post.tag, db.post.other],
+            fields=[db.post.title],
             csv=False, create=False, details=False, editable=True, deletable=True,
             links=[
-                dict(header=T('Public Link'),
-                    body = lambda r: A('Public Link', _class='btn', _href=URL('viewer', 'view', args=[r.title.replace(' ', '_')]))),
                 dict(header=T('Download file'),
                     body = lambda r: A('Download', _class='btn', _href=URL('viewer', 'download', args=[r.source.file])) ),
                 dict(header=T('Delete file'),
@@ -84,7 +82,7 @@ def posts():
 
 @is_owner
 def post():
-    fields = ['source', 'title', 'description', 'category', 'tag', 'other'];
+    fields = ['source', 'title', 'repo', 'subheader', 'description', 'category', 'tag', 'other'];
     form = SQLFORM(db.post, fields=fields, submit_button = 'Post')
     if form.process().accepted:
         # Successful upload! Redirect the user to the manage page

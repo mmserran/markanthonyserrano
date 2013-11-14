@@ -95,8 +95,8 @@ use_janrain(auth, filename='private/janrain.key')
 import datetime
 
 db.define_table('project',
-    Field('filename', unique=True),
-    Field('file', 'upload', unique=True, autodelete=True),
+    Field('filename'),
+    Field('file', 'upload', autodelete=True),
     Field('thumbnail', 'upload', autodelete=True),
     format = '%(filename)s')
 
@@ -104,8 +104,8 @@ db.define_table('post',
     Field('title', unique=True),
     Field('source', 'reference project', unique=True),
     Field('category', 'string'),
-    #Field('repo', 'string'),
-    #Field('subheader', 'string'),
+    Field('repo', 'string'),
+    Field('subheader', 'string'),
     Field('description', 'text'),
     Field('tag', 'list:string'),
     Field('other', 'list:string'),
