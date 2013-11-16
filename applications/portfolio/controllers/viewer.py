@@ -52,6 +52,8 @@ def createQuery():
     # Convert to dict with selected status at default on
     tags_selected = dict(zip(tags_available, (True for num in tags_available)))
     
+    if 'None' in tags_selected:
+        del tags_selected['None']
     if '' in tags_selected:
         del tags_selected['']
     
