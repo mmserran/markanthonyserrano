@@ -5,6 +5,7 @@
 def home():
     return dict()
 
+# Display all stored uploads on this page
 @is_owner
 def uploads():
     q = db.project
@@ -26,6 +27,7 @@ def uploads():
             )
     return dict(grid=grid)
 
+# Delete a certain post or upload through this page
 @is_owner
 def delete():
     if request.args(1)=='0':
@@ -39,6 +41,7 @@ def delete():
         
     return dict()
 
+# Upload new content on this page
 @is_owner
 def upload():
     fields = ['file', 'thumbnail'];
@@ -61,6 +64,7 @@ def upload():
         response.flash = 'Error'
     return dict(form=form)
 
+# Display all public posts on the posts() page
 @is_owner
 def posts():
     q = db.post
@@ -80,9 +84,10 @@ def posts():
             )
     return dict(grid=grid)
 
+# Create new posts in the post() page
 @is_owner
 def post():
-    fields = ['source', 'title', 'repo', 'live', 'subheader', 'description', 'category', 'tag', 'other'];
+    fields = ['source', 'title', 'date', 'repo', 'live', 'subheader', 'description', 'category', 'tag', 'other'];
     form = SQLFORM(db.post, fields=fields, submit_button = 'Post')
     if form.process().accepted:
         # Successful upload! Redirect the user to the manage page

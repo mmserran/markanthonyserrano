@@ -92,7 +92,6 @@ use_janrain(auth, filename='private/janrain.key')
 
 #########################################################################
 ## tables
-import datetime
 
 db.define_table('project',
     Field('filename'),
@@ -102,6 +101,7 @@ db.define_table('project',
 
 db.define_table('post',
     Field('title', unique=True),
+    Field('date', 'string'),
     Field('source', 'reference project', unique=True),
     Field('category', 'string'),
     Field('repo', 'string'),
@@ -110,13 +110,11 @@ db.define_table('post',
     Field('description', 'text'),
     Field('tag', 'list:string'),
     Field('other', 'list:string'),
-    Field('date', 'date', default=datetime.datetime.utcnow()),
     Field('counter', 'integer', default=0))
 
 db.project.filename.writable = False
 db.project.thumbnail.requires = IS_NOT_EMPTY()
 
-db.post.date.writable    = db.post.date.readable    = False
 db.post.counter.writable = db.post.counter.readable = False
 db.post.tag.requires = IS_NOT_EMPTY()
 

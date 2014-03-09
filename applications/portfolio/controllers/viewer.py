@@ -34,11 +34,12 @@ def createQuery():
     category = request.vars.values()[0]
     session.category = category
     
+    # Define the universal set that we can access
     if category=='All' or category=='Other':
-        # Get all tags
+        # Universe is set of all tags
         group = db(db.post).select()
     else:
-        # Get set of all tags in category
+        # Universe is set of all tags within category
         group = db(db.post.category == category).select()
        
     # Convert to list of unique tags 
@@ -47,6 +48,8 @@ def createQuery():
             tags_available += row.other
         else:
             tags_available += row.tag
+        if '' in tags_available:
+            tags_available.remove('')
     tags_available = list(set(tags_available))
     
     # Convert to dict with selected status at default on
@@ -54,8 +57,6 @@ def createQuery():
     
     if 'None' in tags_selected:
         del tags_selected['None']
-    if '' in tags_selected:
-        del tags_selected['']
     
     ''' END GENERATE AVAILABLE TAGS '''''''''''''''
     
@@ -118,7 +119,7 @@ def updateGrid():
                 results = results | db(q1)(q2).select()
             else:
                 results = results | db(q1).select()
-    
+            
     return dict(results=results)
 
 def post():

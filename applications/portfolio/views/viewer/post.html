@@ -9,27 +9,29 @@
 	  
 	  <span style="width:20px"></span>
 	  <span class="col">
-		<h5>Date: </h5>
+		<h5>Date of Work: </h5>
 			<p>{{=post.date}}</p>
 		<br />
 		<h5>Source Code: </h5>
-			{{if post.repo:}}
+			{{if "github.com" in post.repo:}}
 				<p>{{=A('Github', _class='btn', _href=post.repo)}}</p>
+			{{elif post.repo:}}
+				<p>{{=A('Source Link', _class='btn', _href=post.repo)}}</p>
 			{{elif post.source.file:}}
 				<p>{{=A('Download', _class='btn', _href=URL('download', args=post.source.file))}}</p>
 			{{else:}}
-				<p class='no'>Unavailable</p>
+				<p class='no'>&nbspnot available</p>
 			{{pass}}
 	  </span>
 	  <span class="col">
 		<h5>Category: </h5>
 			<p>{{=post.category}}</p>
 		<br />
-		<h5>Live?</h5>
+		<h5>Public?</h5>
 			{{if post.live:}}
-				<p>{{=A('Live Link', _class='btn', _href=post.live)}}</p>
+				<p>{{=A('Yes', _class='btn', _href=post.live)}}</p>
 			{{else:}}
-				<p class='no'>No</p>
+				<p class='no'>&nbspNo</p>
 				
 			{{pass}}
 	  </span>
